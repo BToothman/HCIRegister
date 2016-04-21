@@ -1,0 +1,320 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+    </head>
+
+    <body>
+        <header>
+            <div id="logo">
+                <h1>UC Course Registration</h1>
+            </div>
+        </header>
+
+        <div id="main">
+            <article>
+                <section class="wide">
+                    <div>
+                        <div class="item" id="student">
+                            Alice Wonderland
+                            <section id="student-drop">
+                                <h2>Alice Wonderland</h2>
+                                <label>Student ID</label>M01234567<br/>
+                                <label>Degree Path</label>MS, Cybersecurity<br/>
+                                <label>GPA</label>3.7
+                            </section>
+                        </div>
+                        <div class="item"><label>Current Semester</label>2016 Spring Semester</div>
+                        <div class="item" id="advisor">
+                            <label>Advisor</label>Jon Smith
+                            <section id="advisor-drop">
+                                <h2>Jon Smith</h2>
+                                <label>Phone</label>513-556-9999<br/>
+                                <label>Email</label><a href="javascript:void(0)">jon.smith@uc.edu</a><br/>
+                                <label>Office Hours</label>M/W/F 9:00AM - 11:00AM
+                            </section>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Registered Courses</h1>
+                    <div>
+                        <div class="item">
+                            <!--<select name="register_semester">
+                                <option selected>Summer 2016</option>
+                                <option>Fall 2016</option>
+                                <option>Spring 2017</option>
+                                <option>Summer 2017</option>
+                            </select>-->
+                            <div class="action"><a href="javascript:void(0)">Schedule</a></div>
+                        </div>
+                        <div class="item calendar">
+                            <h2>Online</h2>
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['online'], enrolled:true, degree:false, complete:false, semester:true}">
+                                <div><label>{{ displayTime(course.offered.time) }}</label></div>
+                                <div>{{ course.title }}</div>
+                                <div class="action">
+                                    <a href="javascript:void(0)" (click)="dropCourse(course)">Drop</a>
+                                </div>
+                            </div>
+                            <h2>Monday</h2>
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['m'], enrolled:true, degree:false, complete:false, semester:true}">
+                                <div><label>{{ displayTime(course.offered.time) }}</label></div>
+                                <div>{{ course.title }}</div>
+                                <div class="action">
+                                    <a href="javascript:void(0)" (click)="dropCourse(course)">Drop</a>
+                                </div>
+                            </div>
+                            <h2>Tuesday</h2>
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['tu'], enrolled:true, degree:false, complete:false, semester:true}">
+                                <div><label>{{ displayTime(course.offered.time) }}</label></div>
+                                <div>{{ course.title }}</div>
+                                <div class="action">
+                                    <a href="javascript:void(0)" (click)="dropCourse(course)">Drop</a>
+                                </div>
+                            </div>
+                            <h2>Wednesday</h2>
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['w'], enrolled:true, degree:false, complete:false, semester:true}">
+                                <div><label>{{ displayTime(course.offered.time) }}</label></div>
+                                <div>{{ course.title }}</div>
+                                <div class="action">
+                                    <a href="javascript:void(0)" (click)="dropCourse(course)">Drop</a>
+                                </div>
+                            </div>
+                            <h2>Thursday</h2>
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['th'], enrolled:true, degree:false, complete:false, semester:true}">
+                                <div><label>{{ displayTime(course.offered.time) }}</label></div>
+                                <div>{{ course.title }}</div>
+                                <div class="action">
+                                    <a href="javascript:void(0)" (click)="dropCourse(course)">Drop</a>
+                                </div>
+                            </div>
+                            <h2>Friday</h2>
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['f'], enrolled:true, degree:false, complete:false, semester:true}">
+                                <div><label>{{ displayTime(course.offered.time) }}</label></div>
+                                <div>{{ course.title }}</div>
+                                <div class="action">
+                                    <a href="javascript:void(0)" (click)="dropCourse(course)">Drop</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Search</h1>
+                    <div>
+                        <span class="item">
+                            <input type="search" placeholder="Search Courses" [(ngModel)]="filterArgs.title" />
+                        </span>
+                        <a href="javascript:void(0)" (click)="toggleFilters()">Advanced Filters</a>
+                        <span class="item" [hidden]="showFilters" id="filters">
+                            <div>
+                                <label>Instructor</label>
+                                <select type="" name="instructor">
+                                    <option selected></option>
+                                    <option>Eric Clapton</option>
+                                </select>
+                            </div>
+                            <div>
+                            <label>School</label>
+                                <select name="school">
+                                    <option selected></option>
+                                    <option>College of Information Technology</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Degree</label>
+                                <select name="degree">
+                                    <option selected></option>
+                                    <option>MS, Cybersecurity</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label>Semester</label>
+                                <select name="semester">
+                                    <option selected></option>
+                                    <option *ngFor="#sem of semesters">{{ sem.description }}</option>
+                                </select>
+                            </div>
+                            <!--<div>
+                                <label>fits current schedule</label>
+                                <input type="checkbox" name="fits">
+                            </div>-->
+                            <fieldset>
+                                <legend>Meeting</legend>
+                                <div>
+                                    <span>
+                                        <input type="checkbox" name="monday">
+                                        <label>Monday</label>
+                                    </span>
+                                    <span>
+                                        <input type="checkbox" name="tuesday">
+                                        <label>Tuesday</label>
+                                    </span>
+                                    <span>
+                                        <input type="checkbox" name="wednesday">
+                                        <label>Wednesday</label>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span>
+                                        <input type="checkbox" name="thursday">
+                                        <label>Thursday</label>
+                                    </span>
+                                    <span>
+                                        <input type="checkbox" name="friday">
+                                        <label>Friday</label>
+                                    </span>
+                                    <span>
+                                        <input type="checkbox" name="online">
+                                        <label>Online</label>
+                                    </span>
+                                </div>
+                            </fieldset>
+                        </span>
+                        <div class="courseList">
+                        <div class="item" *ngFor="#course of courses | FilterPipe:filterArgs">
+                            <div class="course">
+                                <div>
+                                    <h1>{{ course.title }}</h1>
+                                    <p>{{ course.teacher.name }}</p>
+                                    <div class="action">
+                                        <a *ngIf="course.available" href="javascript:void(0)" (click)="addCourse(course)">Add</a>
+                                        <p *ngIf="!course.available" class="disabled">Not Available</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    {{ course.offered.semester.description }}
+                                    {{ displayDays(course.offered.days) }}
+                                    {{ displayTime(course.offered.time) }}
+                                </div>
+                                <div class="prereq">
+                                    <label>Required Courses</label>
+                                    <ul>
+                                        <li *ngIf="course.prereq.length == 0">None</li>
+                                        <li *ngFor="#prereq of course.prereq" [ngClass]="{need: (courseById(prereq).grade.length == 0), complete: (courseById(prereq).grade.length > 0)}">
+                                            {{ courseById(prereq).title }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Completed Courses</h1>
+                    <div><div class="courseList">
+                        <div class="item" *ngFor="#course of courses | FilterPipe:completeArgs">
+                            <div class="course">
+                                <div>
+                                    <h1>{{ course.title }}</h1>
+                                    <p>{{ course.teacher.name }}</p>
+                                    <div class="action">
+                                        <label>Grade</label>{{ course.grade | uppercase }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>{{ course.offered.semester.description }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div></div>
+                </section>
+                <section>
+                    <h1>Announcements</h1>
+                    <div>
+                        <div class="item">
+                            <span class="marker">APR 1</span>
+                            <p>Summer 2016 Course Registration OPEN</p>
+                        </div>
+                        <div class="item">
+                            <span class="marker">MAR 21</span>
+                            <p>Have a Fun Spring Break!</p>
+                        </div>
+                        <div class="item">
+                            <span class="marker">JAN 11</span>
+                            <p>Spring Semester Classes Begin</p>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Required Courses</h1>
+                    <div>
+                        <div class="courseList">
+                            <div class="item" *ngFor="#course of courses | FilterPipe:degreeArgs">
+                                <div class="course">
+                                    <div>
+                                        <h1>{{ course.title }}</h1>
+                                        <p>{{ course.teacher.name }}</p>
+                                        <div class="action">
+                                            <a *ngIf="course.available" href="javascript:void(0)" (click)="addCourse(course)">Add</a>
+                                            <p *ngIf="!course.available" class="disabled">Not Available</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        {{ course.offered.semester.description }}
+                                        {{ displayDays(course.offered.days) }}
+                                        {{ displayTime(course.offered.time) }}
+                                    </div>
+                                    <div class="prereq">
+                                        <label>Required Courses</label>
+                                        <ul>
+                                            <li *ngIf="course.prereq.length == 0">None</li>
+                                            <li *ngFor="#prereq of course.prereq" [ngClass]="{need: (courseById(prereq).grade.length == 0), complete: (courseById(prereq).grade.length > 0)}">
+                                                {{ courseById(prereq).title }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <h1>Chat</h1>
+                    <div>
+                        <div class="item">
+                            <label>Find Friend (M#)</label>
+                            <input type="text" name="friend" />
+                        </div>
+                        <div class="item" (click)="msgOpen('Mad Hatter')">
+                            <span class="marker online">Online</span>
+                            <p>Mad Hatter</p>
+                        </div>
+                        <div class="item" (click)="msgOpen('March Hare')">
+                            <span class="marker online">Online</span>
+                            <p>March Hare</p>
+                        </div>
+                        <div class="item">
+                            <span class="marker offline">Offline</span>
+                            <p>Red Queen</p>
+                        </div>
+                        <div class="item">
+                            <span class="marker offline">Offline</span>
+                            <p>Cheshire Cat</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <div id="chat">
+            <section *ngFor="#chat of chats">
+                <h1>
+                    {{ chat }}
+                    <div class="action"><a href="javascript:void(0)" (click)="msgClose(chat)">Close</a></div>
+                </h1>
+                <div class="talk">
+                    <div class="msg"><label>you</label>This is a message that I have sent, I have sent other messages before but this one is my favorite</div>
+                </div>
+                <input type="text" name="txtChat" />
+            </section>
+        </div>
+
+        <footer>
+            <h3>University of Cincinnati</h3>
+            <p>2600 Clifton Ave. | Cincinnati, OH | 45221</p>
+            <p>ph: 513-556-0000</p>
+        </footer>
+    </body>
+</html>
