@@ -39,17 +39,11 @@
                     <h1>Registered Courses</h1>
                     <div>
                         <div class="item">
-                            <!--<select name="register_semester">
-                                <option selected>Summer 2016</option>
-                                <option>Fall 2016</option>
-                                <option>Spring 2017</option>
-                                <option>Summer 2017</option>
-                            </select>-->
                             <div class="action"><a href="javascript:void(0)">Schedule</a></div>
                         </div>
                         <div class="item calendar">
                             <h2>Online</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['online'], enrolled:true, degree:false, complete:false, semester:true}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['online'], enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -57,7 +51,7 @@
                                 </div>
                             </div>
                             <h2>Monday</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['m'], enrolled:true, degree:false, complete:false, semester:true}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['m'], enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -65,7 +59,7 @@
                                 </div>
                             </div>
                             <h2>Tuesday</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['tu'], enrolled:true, degree:false, complete:false, semester:true}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['tu'], enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -73,7 +67,7 @@
                                 </div>
                             </div>
                             <h2>Wednesday</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['w'], enrolled:true, degree:false, complete:false, semester:true}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['w'], enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -81,7 +75,7 @@
                                 </div>
                             </div>
                             <h2>Thursday</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['th'], enrolled:true, degree:false, complete:false, semester:true}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['th'], enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -89,7 +83,7 @@
                                 </div>
                             </div>
                             <h2>Friday</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['f'], enrolled:true, degree:false, complete:false, semester:true}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['f'], enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -135,10 +129,6 @@
                                     <option *ngFor="#sem of semesters">{{ sem.description }}</option>
                                 </select>
                             </div>
-                            <!--<div>
-                                <label>fits current schedule</label>
-                                <input type="checkbox" name="fits">
-                            </div>-->
                             <fieldset>
                                 <legend>Meeting</legend>
                                 <div>
@@ -183,9 +173,17 @@
                                     </div>
                                 </div>
                                 <div>
-                                    {{ course.offered.semester.description }}
                                     {{ displayDays(course.offered.days) }}
                                     {{ displayTime(course.offered.time) }}
+                                </div>
+                                <div class="prereq">
+                                    <label>Offered</label>
+                                    <ul>
+                                        <li *ngIf="course.prereq.length == 0">None</li>
+                                        <li *ngFor="#semester of course.semesters">
+                                            {{ semester.description }}
+                                        </li>
+                                    </ul>
                                 </div>
                                 <div class="prereq">
                                     <label>Required Courses</label>
@@ -212,9 +210,6 @@
                                     <div class="action">
                                         <label>Grade</label>{{ course.grade | uppercase }}
                                     </div>
-                                </div>
-                                <div>
-                                    <div>{{ course.offered.semester.description }}</div>
                                 </div>
                             </div>
                         </div>
@@ -252,9 +247,17 @@
                                         </div>
                                     </div>
                                     <div>
-                                        {{ course.offered.semester.description }}
                                         {{ displayDays(course.offered.days) }}
                                         {{ displayTime(course.offered.time) }}
+                                    </div>
+                                    <div class="prereq">
+                                        <label>Offered</label>
+                                        <ul>
+                                            <li *ngIf="course.prereq.length == 0">None</li>
+                                            <li *ngFor="#semester of course.semesters">
+                                                {{ semester.description }}
+                                            </li>
+                                        </ul>
                                     </div>
                                     <div class="prereq">
                                         <label>Required Courses</label>

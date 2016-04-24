@@ -26,12 +26,7 @@ export class FilterPipe {
 
             var enrolledMatch = (course.enrolled === args[0].enrolled);
 
-            var semesterMatch = true;
-            if (args[0].semester) {
-                semesterMatch = (course.offered.semester.description.localeCompare("2016 Summer") == 0);
-            }
-
-            return (courseMatch && dayMatch && enrolledMatch && degreeMatch && completeMatch && semesterMatch);
+            return (courseMatch && dayMatch && enrolledMatch && degreeMatch && completeMatch);
         });
     }
 }

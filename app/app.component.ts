@@ -41,7 +41,6 @@ export class AppComponent {
         enrolled: false,
         degree: false,
         complete: true,
-        semester: false,
     };
     degreeArgs = {
         title: "",
@@ -49,7 +48,6 @@ export class AppComponent {
         enrolled: false,
         degree: true,
         complete: false,
-        semester: false,
     };
 
 
@@ -62,7 +60,6 @@ export class AppComponent {
         enrolled: false,
         degree: false,
         complete: false,
-        semester: true,
     };
 
     displayDays(days: string[]) {

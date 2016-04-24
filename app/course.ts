@@ -8,6 +8,7 @@ export interface Course {
     prereq: number[];
     grade: string;
     enrolled: boolean;
+    semesters: Semester[];
     available: boolean;
 }
 
@@ -26,7 +27,6 @@ export interface Semester {
 export interface Offered {
     time: number;
     days: string[];
-    semester: Semester;
 }
 
 export interface Annoucement {
