@@ -16,6 +16,8 @@ export class AppComponent {
     teachers = TEACHERS;
     schools = SCHOOLS;
 
+    help = false;
+
     courseById(id: number) {
         for (var i in this.courses) {
             if (this.courses[i].id == id) {

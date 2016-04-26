@@ -8,7 +8,32 @@
             <div id="logo">
                 <h1>UC Course Registration</h1>
             </div>
+            <div id="help">
+                <h1 (click)="help = !help">?</h1>
+            </div>
         </header>
+
+        <div *ngIf="help" id="help-text">
+            <div>
+                <a href="javascript:void(0)" (click)="help = false">Close</a>
+                <dl>
+                    <dt>Registered Courses</dt>
+                    <dd>Schedule of currently registered courses</dd>
+                    <dt>Search</dt>
+                    <dd></dd>
+                    <dt>Completed Courses</dt>
+                    <dd></dd>
+                    <dt>Announcements</dt>
+                    <dd></dd>
+                    <dt>Required Courses</dt>
+                    <dd></dd>
+                    <dt>Chat</dt>
+                    <dd></dd>
+                    <dt>Questions??</dt>
+                    <dd></dd>
+                </dl>
+            </div>
+        </div>
 
         <div id="main">
             <article>
@@ -38,9 +63,9 @@
                 <section>
                     <h1>Registered Courses</h1>
                     <div>
-                        <div class="item">
+                        <!--<div class="item">
                             <div class="action"><a href="javascript:void(0)">Schedule</a></div>
-                        </div>
+                        </div>-->
                         <div class="item calendar">
                             <h2>Online</h2>
                             <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', online:true, enrolled:true, degree:false, complete:false}">
@@ -91,16 +116,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <section>
-                    <div>
-                        {{ filterArgs.monday }}
-                        {{ filterArgs.tuesday }}
-                        {{ filterArgs.wednesday }}
-                        {{ filterArgs.thursday }}
-                        {{ filterArgs.friday }}
-                        {{ filterArgs.online }}
                     </div>
                 </section>
                 <section>
@@ -284,16 +299,16 @@
                     <h1>Chat</h1>
                     <div>
                         <div class="item">
-                            <label>Find Friend (M#)</label>
+                            <label>Find Friend (Search UC Directory)</label>
                             <input type="text" name="friend" />
                         </div>
                         <div class="item" (click)="msgOpen('Mad Hatter')">
                             <span class="marker online">Online</span>
                             <p>Mad Hatter</p>
                         </div>
-                        <div class="item" (click)="msgOpen('March Hare')">
+                        <div class="item" (click)="msgOpen('Jon Smith (advisor)')">
                             <span class="marker online">Online</span>
-                            <p>March Hare</p>
+                            <p>Jon Smith (advisor)</p>
                         </div>
                         <div class="item">
                             <span class="marker offline">Offline</span>
