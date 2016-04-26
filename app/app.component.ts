@@ -13,6 +13,8 @@ import {FilterPipe} from './filter.pipe';
 export class AppComponent {
     semesters = SEMESTERS;
     courses: Course[] = COURSES;
+    teachers = TEACHERS;
+    schools = SCHOOLS;
 
     courseById(id: number) {
         for (var i in this.courses) {
@@ -60,6 +62,15 @@ export class AppComponent {
         enrolled: false,
         degree: false,
         complete: false,
+        teacher: "",
+        school: "",
+        semester: "",
+        monday: false,
+        tuesday: false,
+        wednesday: false,
+        thursday: false,
+        friday: false,
+        online: false,
     };
 
     displayDays(days: string[]) {

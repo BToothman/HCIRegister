@@ -13,13 +13,11 @@ export var SCHOOLS: School[] = [
 ];
 
 export var SEMESTERS: Semester[] = [
-    {"description": "2015 Spring"},
-    {"description": "2015 Summer"},
-    {"description": "2015 Fall"},
-    {"description": "2016 Spring"},
     {"description": "2016 Summer"},
     {"description": "2016 Fall"},
     {"description": "2017 Spring"},
+    {"description": "2017 Summer"},
+    {"description": "2017 Fall"},
 ];
 
 export var COURSES: Course[] = [
@@ -32,7 +30,7 @@ export var COURSES: Course[] = [
     "prereq": [],
     "enrolled": false,
     "available": false,
-    "semesters": [SEMESTERS[0]],
+    "semesters": [SEMESTERS[2], SEMESTERS[4]],
     "grade": "A-"},
     {"id": 1,
     "title": "Math 102",
@@ -43,7 +41,7 @@ export var COURSES: Course[] = [
     "prereq": [0],
     "enrolled": false,
     "available": true,
-    "semesters": [SEMESTERS[0]],
+    "semesters": [SEMESTERS[0], SEMESTERS[2]],
     "grade": ""},
     {"id": 2,
     "title": "Math 103",
@@ -54,7 +52,7 @@ export var COURSES: Course[] = [
     "prereq": [0,1],
     "enrolled": false,
     "available": false,
-    "semesters": [SEMESTERS[0]],
+    "semesters": [SEMESTERS[1], SEMESTERS[3]],
     "grade": ""},
 
     {"id": 3,
@@ -66,7 +64,7 @@ export var COURSES: Course[] = [
     "prereq": [],
     "enrolled": false,
     "available": false,
-    "semesters": [SEMESTERS[0]],
+    "semesters": [SEMESTERS[2], SEMESTERS[4]],
     "grade": "B+"},
     {"id": 4,
     "title": "English 102",
@@ -77,7 +75,7 @@ export var COURSES: Course[] = [
     "prereq": [3],
     "enrolled": false,
     "available": true,
-    "semesters": [SEMESTERS[0]],
+    "semesters": [SEMESTERS[0], SEMESTERS[2]],
     "grade": ""},
     {"id": 5,
     "title": "English 103",
@@ -88,7 +86,7 @@ export var COURSES: Course[] = [
     "prereq": [3,4],
     "enrolled": false,
     "available": false,
-    "semesters": [SEMESTERS[0]],
+    "semesters": [SEMESTERS[1], SEMESTERS[3]],
     "grade": ""},
 
     {"id": 6,
@@ -100,7 +98,7 @@ export var COURSES: Course[] = [
     "prereq": [],
     "enrolled": false,
     "available": true,
-    "semesters": [SEMESTERS[0]],
+    "semesters": [SEMESTERS[0], SEMESTERS[2]],
     "grade": ""},
     {"id": 7,
     "title": "Human Computer Interaction 102",
@@ -111,7 +109,7 @@ export var COURSES: Course[] = [
     "prereq": [6],
     "enrolled": false,
     "available": false,
-    "semesters": [SEMESTERS[0]],
+    "semesters": [SEMESTERS[1], SEMESTERS[3]],
     "grade": ""},
     {"id": 8,
     "title": "Human Computer Interaction 103",
@@ -122,6 +120,6 @@ export var COURSES: Course[] = [
     "prereq": [6,7],
     "enrolled": false,
     "available": false,
-    "semesters": [SEMESTERS[0]],
+    "semesters": [SEMESTERS[2], SEMESTERS[4]],
     "grade": ""},
 ];

@@ -43,7 +43,7 @@
                         </div>
                         <div class="item calendar">
                             <h2>Online</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['online'], enrolled:true, degree:false, complete:false}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', online:true, enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <h2>Monday</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['m'], enrolled:true, degree:false, complete:false}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', monday:true, enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -59,7 +59,7 @@
                                 </div>
                             </div>
                             <h2>Tuesday</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['tu'], enrolled:true, degree:false, complete:false}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', tuesday:true, enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
                             <h2>Wednesday</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['w'], enrolled:true, degree:false, complete:false}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', wednesday:true, enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                             <h2>Thursday</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['th'], enrolled:true, degree:false, complete:false}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', thursday:true, enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <h2>Friday</h2>
-                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', days:['f'], enrolled:true, degree:false, complete:false}">
+                            <div class="registered" *ngFor="#course of courses | FilterPipe:{title:'', friday:true, enrolled:true, degree:false, complete:false}">
                                 <div><label>{{ displayTime(course.offered.time) }}</label></div>
                                 <div>{{ course.title }}</div>
                                 <div class="action">
@@ -91,6 +91,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </section>
+                <section>
+                    <div>
+                        {{ filterArgs.monday }}
+                        {{ filterArgs.tuesday }}
+                        {{ filterArgs.wednesday }}
+                        {{ filterArgs.thursday }}
+                        {{ filterArgs.friday }}
+                        {{ filterArgs.online }}
                     </div>
                 </section>
                 <section>
@@ -103,59 +113,56 @@
                         <span class="item" [hidden]="showFilters" id="filters">
                             <div>
                                 <label>Instructor</label>
-                                <select type="" name="instructor">
+                                <select type="" name="instructor" [(ngModel)]="filterArgs.teacher">
                                     <option selected></option>
-                                    <option>Eric Clapton</option>
+                                    <option *ngFor="#instructor of teachers">{{ instructor.name }}</option>
                                 </select>
                             </div>
                             <div>
                             <label>School</label>
-                                <select name="school">
+                                <select name="school" [(ngModel)]="filterArgs.school">
                                     <option selected></option>
-                                    <option>College of Information Technology</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label>Degree</label>
-                                <select name="degree">
-                                    <option selected></option>
-                                    <option>MS, Cybersecurity</option>
+                                    <option *ngFor="#school of schools">{{ school.name }}</option>
                                 </select>
                             </div>
                             <div>
                                 <label>Semester</label>
-                                <select name="semester">
+                                <select name="semester" [(ngModel)]="filterArgs.semester">
                                     <option selected></option>
                                     <option *ngFor="#sem of semesters">{{ sem.description }}</option>
                                 </select>
+                            </div>
+                            <div>
+                                <label>Required for Degree</label>
+                                <input type="checkbox" [(ngModel)]="filterArgs.degree" />
                             </div>
                             <fieldset>
                                 <legend>Meeting</legend>
                                 <div>
                                     <span>
-                                        <input type="checkbox" name="monday">
+                                        <input type="checkbox" name="monday" [(ngModel)]="filterArgs.monday">
                                         <label>Monday</label>
                                     </span>
                                     <span>
-                                        <input type="checkbox" name="tuesday">
+                                        <input type="checkbox" name="tuesday" [(ngModel)]="filterArgs.tuesday">
                                         <label>Tuesday</label>
                                     </span>
                                     <span>
-                                        <input type="checkbox" name="wednesday">
+                                        <input type="checkbox" name="wednesday" [(ngModel)]="filterArgs.wednesday">
                                         <label>Wednesday</label>
                                     </span>
                                 </div>
                                 <div>
                                     <span>
-                                        <input type="checkbox" name="thursday">
+                                        <input type="checkbox" name="thursday" [(ngModel)]="filterArgs.thursday">
                                         <label>Thursday</label>
                                     </span>
                                     <span>
-                                        <input type="checkbox" name="friday">
+                                        <input type="checkbox" name="friday" [(ngModel)]="filterArgs.friday">
                                         <label>Friday</label>
                                     </span>
                                     <span>
-                                        <input type="checkbox" name="online">
+                                        <input type="checkbox" name="online" [(ngModel)]="filterArgs.online">
                                         <label>Online</label>
                                     </span>
                                 </div>
@@ -179,7 +186,7 @@
                                 <div class="prereq">
                                     <label>Offered</label>
                                     <ul>
-                                        <li *ngIf="course.prereq.length == 0">None</li>
+                                        <li *ngIf="course.semesters.length == 0">None</li>
                                         <li *ngFor="#semester of course.semesters">
                                             {{ semester.description }}
                                         </li>
@@ -253,7 +260,7 @@
                                     <div class="prereq">
                                         <label>Offered</label>
                                         <ul>
-                                            <li *ngIf="course.prereq.length == 0">None</li>
+                                            <li *ngIf="course.semesters.length == 0">None</li>
                                             <li *ngFor="#semester of course.semesters">
                                                 {{ semester.description }}
                                             </li>
