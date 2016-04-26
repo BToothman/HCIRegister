@@ -142,7 +142,7 @@ header div#logo > h1 {
     padding: 0 1rem;
 }
 #help-text {
-    background-color: #CCD1D1;
+    /*background-color: #CCD1D1;*/
     opacity: 2;
     position: fixed;
     left 0;
@@ -151,10 +151,29 @@ header div#logo > h1 {
     height: 100%;
     z-index: 9999;
 }
+#help-text a {
+    display: block;
+    float: right;
+    max-height: 90%;
+    overflow: auto;
+}
+#help-text dl {
+    display: block;
+    font-size: .8rem;
+}
+#help-text dt {
+    font-weight: bold;
+    margin-top: 1rem;
+}
+#help-text dd {
+    padding-left: 1rem;
+}
 #help-text > div {
     background-color:white;
+    box-shadow: 2px 0px 5px #CCD1D1;
     margin: 2% auto;
     opacity: 1;
+    padding: 2rem;
     width: 50rem;
 }
 input[type=search] {
